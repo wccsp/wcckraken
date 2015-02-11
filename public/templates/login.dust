@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Westmoreland | Login</title>
+    <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body style="background-color: #121212;">
+<div id="wrapper" class="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
+            <form method="post" action="/login">
+                <input type="hidden" name="_csrf" value="{_csrf}">
+                <div class="form-group" style="margin-top: 50px;">
+                    <div class="text-center">
+                        <img src="images/wcc_ring.png" alt="Logo"/>
+                    </div>
+                </div>
+                <h2 class="text-center">Welcome!</h2>
+                {?messages}
+                    <ul class="list-group">
+                        {#messages}
+                            <li class="list-group-item list-group-item-danger">{.}</li>
+                        {/messages}
+                    </ul>
+                {/messages}
+                <div class="form-group">
+                    <input class="form-control" type="text" id="email" name="username" placeholder="email@westmoreland.com">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block" type="submit">Login</button>
+                </div>
+                <div class="form-group">
+                    <a href="#">Request an account.</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
