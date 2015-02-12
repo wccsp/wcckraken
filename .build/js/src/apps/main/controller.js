@@ -41,13 +41,6 @@ define ([
             }
         },
 
-        restrictedMethods: [
-            'depts',
-            'home',
-            'ops',
-            'root'
-        ],
-
         //  Routes
 
         depts: function() {
@@ -66,13 +59,6 @@ define ([
             }
         },
 
-        login: function() {
-            require(['./login/controller'], _.bind(function(Login) {
-                this.startApp(Login.Controller);
-                this.triggerAppMethod('show:form');
-            }, this));
-        },
-
         ops: function() {
 
         },
@@ -83,14 +69,6 @@ define ([
 
 
         //  Helpers
-
-        route: function(method) {
-            if (!arguments.length) method = 'home';
-            if (_.indexOf(method, this.restrictedMethods)) {
-                method = this.api.request('session:is:authorized') ? method : 'login';
-            }
-            this[method].apply(this, Array.prototype.slice(1));
-        },
 
         startApp: function(constructor, containerOptions, controllerOptions) {
             containerOptions || (containerOptions = {});

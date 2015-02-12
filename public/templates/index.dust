@@ -1,5 +1,7 @@
 {>"layouts/master" /}
 
+{<title}Westmoreland | {+section}Home{/section}{/title}
 {<body}
-    <h1>{@pre type="content" key="greeting"/}</h1>
+    <div class="row" id="alertRegion"></div>
+	<div class="row" id="contentRegion"></div>
 {/body}

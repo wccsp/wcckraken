@@ -1,7 +1,7 @@
 /*
  *  name: models,
  *  path: /models
- *  desc: 
+ *  desc:
  */
 define([
     'jquery',
@@ -25,7 +25,8 @@ define([
                     type: 'GET',
                     success: _.bind(function(res) {
                         this.set('active', true);
-                        defer.resolve(res);
+                        var user = this.parse(res);
+                        defer.resolve(user);
                     }, this),
                     error: _.bind(function(mod, res) {
                         this.set('active', false);
@@ -33,6 +34,9 @@ define([
                     }, this)
                 });
             return defer.promise();
+        },
+        parse: function(res) {
+            return res && res.user;
         }
     });
 

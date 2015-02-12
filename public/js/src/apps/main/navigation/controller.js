@@ -1,7 +1,7 @@
 /*
  *  name: controller,
  *  path: /controller
- *  desc: 
+ *  desc:
  */
 define([
     'm',
@@ -11,31 +11,50 @@ define([
     var Navigation = {};
 
     Navigation.Controller = M.Controller.extend({
+        //  Configuration
+        //  --------------------------
+
         channels: {
             api: {
                 name: 'api'
             },
             intercom: {
-                name: 'main'
+                name: 'main',
+                events: {
+                    on: {
+                        'reset:user': 'updateGreeting'
+                    }
+                }
             }
         },
+
+        //  View Handlers
+        //  ---------------------------
 
         onShowNavigation: function() {
-            if (this.api.request('session:is:authorized')) {
-                var events = {
+            var xhr = this.api.request('user:get');
+            $.when(xhr).done(_.bind(function(user) {
+                this.views.add({
+                    name: 'menu',
+                    view: new Views.MenuView(),
                     events: {
-                        'home': 'home'
+                        'navigate': 'navigate'
                     }
-                };
-                this.initView('menu', Views.MenuView, events);
+                });
                 App.headerRegion.show(this.views.get('menu'));
-            } else {
-                App.headerRegion.empty();
-            }
+            }, this));
         },
 
-        home: function() {
-            App.navigate('home', {trigger: true});
+        //  Event Hand
+        navigate: function(to) {
+            console.log('navigate: ' + to);
+            //App.navigate(to, {trigger: true});
+        },
+
+        //  Update user greeting
+        updateGreeting: function(user) {
+            var greeting = user.displayName();
+            this.views.get('menu').triggerMethod('set:greeting', greeting);
         }
     });
 

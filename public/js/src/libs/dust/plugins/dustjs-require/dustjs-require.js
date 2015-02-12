@@ -1,10 +1,9 @@
 define([
-  'module',
-  './vendor/requirejs-text/text',
-  './vendor/q/q'
-],
-  function(module, text, Q) {
-    var dustModule = module.config().dustModule || 'dustjs-linkedin';
+    'module',
+    'libs/dust/plugins/dustjs-require/vendor/requirejs-text/text',
+    'jquery'
+], function(module, text, $) {
+    var dustModule = 'dustjs';
     var buildMap = {};
     /**
      * This little bit of hackery is required to make dustjs play nice with the
@@ -17,15 +16,15 @@ define([
      * @returns {Promise}
      */
     var getDust = function(req, isBuild){
-      var d = Q.defer();
+      var d = $.Deferred();
       if (!isBuild) {
-        req([dustModule], function(dst){
+        req(['dustjs'], function(dst){
           d.resolve(dst);
         });
       } else {
         d.resolve({});
       }
-      return d.promise;
+      return d.promise();
     };
 
     return {

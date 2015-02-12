@@ -19,8 +19,17 @@ var User = function() {
         active: Boolean,
         resetPasswordToken: String,
         resetPasswordExpires: Date
+    }, {
+        toObject: {
+            transform: function(doc, ret) {
+                delete ret.password;
+            }
+        }
     });
 
+    //  Event Handlers
+    //  -------------------
+    
     // Replace plaintext passwords with a hashed version prior to save
     Schema.pre('save', function(next) {
         var user = this;
@@ -37,6 +46,10 @@ var User = function() {
         next();
     });
 
+    
+    //  Methods
+    //  -------------------
+    
     // Compare plaintext password against a user's hashed password
     Schema.methods.passwordMatches = function (password) {
         var user = this;

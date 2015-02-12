@@ -1,16 +1,18 @@
 /*
  *  name: api,
  *  path: /api
- *  desc: 
+ *  desc:
  */
 define([
+    'jquery',
     'm',
     './models'
-], function (M, Models) {
+], function ($, M, Models) {
     var Auth = {};
 
     Auth.Controller = M.Controller.extend({
         //  Configuration
+        //  -----------------------
 
         channels: {
             api: {
@@ -24,8 +26,13 @@ define([
         },
 
         init: function() {
-            var session = new Models.Session();
-            session.fetch();
+            var session = new Models.Session(),
+                xhr = session.fetch(),
+                succ = _.bind(function(user) {
+                    this.api.command('reset:user', user);
+                }, this),
+                err = function() {window.location = '/login'};
+
             this.models.add({
                 name: 'session',
                 model: session,
@@ -33,9 +40,12 @@ define([
                     'change:active': 'notify'
                 }
             });
+
+            $.when(xhr).then(succ, err);
         },
 
         //  API Methods
+        //  -----------------------
 
         isAuthorized: function() {
             var session = this.models.get('session');

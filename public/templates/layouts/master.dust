@@ -5,10 +5,21 @@
     <title>{+title /}</title>
     <link rel="stylesheet" href="/css/app.css" />
 </head>
+
 <body>
-<div id="wrapper" class="content">
+<!-- Modal Region -->
+<div id="modalRegion"></div>
+
+<!-- Header Region -->
+<div class="container-fluid"><div class="row" id="headerRegion"></div></div>
+
+<!-- Body Block -->
+<div id="wrapper" class="container-fluid">
     {+body /}
 </div>
+
+<!-- Footer Region -->
+<div class="container-fluid"><div class="row" id="footerRegion"></div></div>
 <script data-main="js/src/config" src="/js/src/require/require.js"></script>
 </body>
 </html>

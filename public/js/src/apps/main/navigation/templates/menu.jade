@@ -9,9 +9,9 @@ nav.navbar.navbar-inverse.navbar-static-top
                 each i in [1,2,3]
                     span.icon-bar
             a.navbar-brand(href='#', style='padding: 4px;')
-                img(alt='WCC', src='src/images/wcc_ring.png', style='height: 100%;')
+                img(alt='WCC', src='../images/wcc_ring.png', style='height: 100%;')
         .collapse.navbar-collapse#main-menu
-            ul.nav.navbar-nav
+            ul.nav.navbar-nav.js-main-menu
                 li.active
                     a(href='#', data-tab='home') Home
                 li
@@ -21,6 +21,12 @@ nav.navbar.navbar-inverse.navbar-static-top
                 li
                     a(href='#', data-tab='operations') Operations
             ul.nav.navbar-nav.navbar-right
-                li
-                    a(href='/logout', data-tab='signout') Logout
+                li.dropdown
+                    a.dropdown-toggle(href='#', data-toggle='dropdown', role='button' aria-expanded='false')
+                        span#greeting
+                        span.caret
+                    ul.dropdown-menu.dropdown-menu-right(role='menu')
+                        li
+                            a(href='/logout', data-tab='signout') Logout
+
 .row#sub-menu

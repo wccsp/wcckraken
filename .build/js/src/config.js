@@ -17,12 +17,7 @@ require.config({
         'backbone.radio.shim': 'libs/backbone/plugins/radio/shim/backbone.radio.shim',
 
         // Bootstrap
-        'bootstrap': 'libs/bootstrap/bootstrap.min.js',
-
-        // Dust
-        'dustjs': 'libs/dust/dust-full-0.3.0',
-        'dustc': 'libs/dust/plugins/dustjs-require/dustjs-require',
-        'dustMarionette': 'libs/dust/plugins/marionette-dust/backbone.marionette.dust',
+        'bootstrap': 'libs/bootstrap/bootstrap.min',
 
         // Jquery
         'jquery': 'libs/jquery/jquery-1.11.2.min',
@@ -63,7 +58,6 @@ require.config({
     map: {
         '*': {
             'backbone.marionette': 'marionette',
-            'dust': 'dustjs',
             'handlebars': 'libs/require-handlebars-plugin/hbs/handlebars',
             'hbs/handlebars': 'libs/require-handlebars-plugin/hbs/handlebars'
         }

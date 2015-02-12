@@ -3,7 +3,8 @@ define ([
     'jquery',
     'backbone',
     'marionette',
-    'marionette.handlebars'
+    'marionette.handlebars',
+    'bootstrap'
 ], function(require, $, Backbone, Marionette) {
     var App = new Marionette.Application();
 

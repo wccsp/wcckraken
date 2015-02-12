@@ -1,7 +1,7 @@
 /*
  *  name: api,
  *  path: /api
- *  desc: 
+ *  desc:
  */
 define([
     'require',
@@ -11,10 +11,16 @@ define([
 
     Entities.Controller = M.Controller.extend({
         initializers: {
-            auth: function(options) {
-                require(['./session/api'], _.bind(function(auth) {
-                    this.initController('session', auth.Controller);
-                }, this))
+            user: function(options) {
+                require(['./user/api'], _.bind(function(user) {
+                    this.initController('user', user.Controller, null, options);
+                }, this));
+            },
+
+            session: function(options) {
+                require(['./session/api'], _.bind(function(session) {
+                    this.initController('session', session.Controller, null, options);
+                }, this));
             }
         }
     });

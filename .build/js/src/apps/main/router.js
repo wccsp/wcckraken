@@ -15,11 +15,6 @@ define([
             'depts*path': 'depts',
             '': 'home',
             '*path': 'root'
-        },
-
-        execute: function(callback, args, name) {
-            var controller = this._getController();
-            controller.route.apply(name);
         }
     });
 

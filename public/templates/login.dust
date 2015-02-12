@@ -5,10 +5,10 @@
     <title>Westmoreland | Login</title>
     <link rel="stylesheet" href="/css/app.css" />
 </head>
-<body style="background-color: #121212;">
-<div id="wrapper" class="content">
+<body class="login">
+<div id="wrapper" class="container-fluid content">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-4 col-lg-2 col-lg-offset-5">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4 col-xl-2 col-xl-offset-5">
             <form method="post" action="/login">
                 <input type="hidden" name="_csrf" value="{_csrf}">
                 <div class="form-group" style="margin-top: 50px;">
@@ -16,7 +16,7 @@
                         <img src="images/wcc_ring.png" alt="Logo"/>
                     </div>
                 </div>
-                <h2 class="text-center">Welcome!</h2>
+                <h2 class="text-center js-title">Welcome!</h2>
                 {?messages}
                     <ul class="list-group">
                         {#messages}

@@ -1,7 +1,7 @@
 /*
  *  name: views,
  *  path: /views
- *  desc: 
+ *  desc:
  */
 define([
     'jquery',
@@ -22,11 +22,8 @@ define([
         },
 
         ui: {
-            'home': 'a[data-tab="home"]',
-            'root': 'a[data-tab="root"]',
-            'ops': 'a[data-tab="ops"]',
-            'depts': 'a[data-tab="depts"]',
-            'tabs': 'a[data-tab!="home"]'
+            'greeting': '#greeting',
+            'tab': '.js-main-menu a'
         },
 
         triggers: {
@@ -34,11 +31,16 @@ define([
         },
 
         events: {
-            'click @ui.tabs': 'select'
+            'click @ui.tab': 'select'
         },
 
         select: function(e) {
-            this.trigger('select', $(e.target).attr('data-tab'));
+            e.preventDefault();
+            this.trigger('navigate', $(e.target).attr('data-tab'));
+        },
+
+        onSetGreeting: function(greeting) {
+            this.ui.greeting.text(greeting);
         }
     });
 

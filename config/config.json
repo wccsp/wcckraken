@@ -32,7 +32,7 @@
 
 
     "databaseConfig": {
-        "host": "localhost",
+        "host": "192.168.9.108",
         "database": "wcckraken"
     },
 

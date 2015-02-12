@@ -1,3 +1,5 @@
+//  Login Stuff
+
 'use strict';
 
 var passport = require('passport');
@@ -11,9 +13,10 @@ module.exports = function(router) {
         },
 
         login: function(req, res) {
-            var destination = (req.session.goingTo === '/login') ? '/' : req.session.goingTo;
+            var destination = (req.session.goingTo === '/login' || req.sess) ? '/' : req.session.goingTo;
+            console.log(destination);
             passport.authenticate('local', {
-                successRedirect:destination,
+                successRedirect: destination,
                 failureRedirect: '/login',
                 failureFlash: true
             })(req, res)
