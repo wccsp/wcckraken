@@ -2,21 +2,23 @@
 
 var mongoose = require('mongoose'),
     bcryptjs = require('bcryptjs'),
-    crypt = require('../../lib/crypt');
+    crypt = require('../../lib/crypt'),
+    Schema = mongoose.Schema;
 
 var User = function() {
 
     // Define schema
-    var Schema = mongoose.Schema({
+    var userSchema = Schema({
         first: String,
         last: String,
         email: {type: String, unique: true},
         password: String,
         groups: [
-            {type: mongoose.Schema.Types.ObjectId, ref: 'Group'}
+            {type: Schema.Types.ObjectId, ref: 'Group'}
         ],
-        profile: {type: mongoose.Schema.Types.ObjectId, ref: 'Profile'},
+        profile: {type: Schema.Types.ObjectId, ref: 'Profile'},
         active: Boolean,
+        activateToken: String,
         resetPasswordToken: String,
         resetPasswordExpires: Date
     }, {
@@ -31,7 +33,7 @@ var User = function() {
     //  -------------------
     
     // Replace plaintext passwords with a hashed version prior to save
-    Schema.pre('save', function(next) {
+    userSchema.pre('save', function(next) {
         var user = this;
 
         // prevent double hash
@@ -51,13 +53,13 @@ var User = function() {
     //  -------------------
     
     // Compare plaintext password against a user's hashed password
-    Schema.methods.passwordMatches = function (password) {
+    userSchema.methods.passwordMatches = function (password) {
         var user = this;
         return bcryptjs.compareSync(password, user.password);
     };
 
     // Check if a user has a permission
-    Schema.methods.hasPermissionTo = function(permission) {
+    userSchema.methods.hasPermissionTo = function(permission) {
         var hasPermission = false;
         for (var i = 0; i < this.groups.length; i++) {
             if (this.groups[i].hasPermissionTo(permission)) {
@@ -68,7 +70,7 @@ var User = function() {
         return hasPermission;
     };
 
-    return mongoose.model('User', Schema);
+    return mongoose.model('User', userSchema);
 };
 
 module.exports = new User();

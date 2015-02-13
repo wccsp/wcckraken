@@ -1,20 +1,22 @@
 'use strict';
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var Group = function() {
 
     // Define schema
-    var Schema = mongoose.Schema({
+    var groupSchema = mongoose.Schema({
         name: {type: String, unique: true},
         desc: String,
-        permissions: [
-            {type: Schema.Types.ObjectId, ref: 'Permission'}
+        admins: [{type: Schema.Types.ObjectId, ref: 'User'}],
+        groups: [
+            {type: Schema.Types.ObjectId, ref: 'Group'}
         ]
     });
 
     // Check for permission
-    Schema.methods.hasPermissionTo = function(permission) {
+    groupSchema.methods.hasPermissionTo = function(permission) {
         var hasPermission = false;
         for (var i = 0; i < this.permissions.length; i++) {
             var p = this.permissions[i];
@@ -26,7 +28,7 @@ var Group = function() {
         return hasPermission;
     };
 
-    return mongoose.model('Group', Schema);
+    return mongoose.model('Group', groupSchema);
 };
 
 module.exports = new Group();

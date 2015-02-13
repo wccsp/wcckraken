@@ -6,6 +6,11 @@ require.config({
             name: 'main',
             location: 'apps/main',
             main: 'app'
+        },
+        {
+            name: 'home',
+            location: 'apps/home',
+            main: 'controller'
         }
     ],
 
@@ -21,6 +26,9 @@ require.config({
 
         // Jquery
         'jquery': 'libs/jquery/jquery-1.11.2.min',
+
+        // Leaflet
+        'leaflet': 'libs/leaflet/leaflet-src',
 
         // Marionette
         'marionette': 'libs/marionette/backbone.marionette',
