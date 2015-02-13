@@ -2,25 +2,14 @@
 
     "express": {
         "view cache": false,
-        "view engine": "js",
-        "views": "path:./public/templates"
+        "view engine": "jade",
+        "views": "path:./views"
     },
 
     "view engines": {
         "js": {
-            "module": "engine-munger",
-            "renderer": {
-                "method": "js",
-                "arguments": [
-                    { "cache": true },
-                    {
-                        "views": "config:express.views",
-                        "view engine": "config:express.view engine",
-                        "specialization": "config:specialization",
-                        "i18n": "config:i18n"
-                    }
-                ]
-            }
+            "module": "jade",
+            "renderer": "__express"
         }
     },
 

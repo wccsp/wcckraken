@@ -1,0 +1,16 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        title= title
+        link(rel='stylesheet', href='/css/app.css')
+
+    body
+        #modalRegion
+        .container-fluid
+            .row#headerRegion
+        .container-fluid#wrapper
+            block content
+        .container-fluid
+            .row#footerRegion
+        script(src='/js/src/require/require.js', data-main='js/src/config')

@@ -7,7 +7,7 @@ var controller = {
         res.render('index');
     },
 
-    validate: function(req, res) {
+    authenticate: function(req, res) {
         if (req.isAuthenticated()) {
             res.send({user: req.user.toObject()});
         } else {
@@ -18,7 +18,7 @@ var controller = {
 
 var routes = [
     {path: '/', methods: ['get']},
-    {path: '/validate', methods: ['validate']}
+    {path: '/authenticate', methods: ['authenticate']}
 ];
 
 module.exports = function (router) {
