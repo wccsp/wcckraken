@@ -22,7 +22,7 @@ define([
                 name: 'main',
                 events: {
                     on: {
-                        'reset:user': 'updateGreeting'
+                        'reset:user': 'onShowNavigation'
                     }
                 }
             }
@@ -36,12 +36,13 @@ define([
             $.when(xhr).done(_.bind(function(user) {
                 this.views.add({
                     name: 'menu',
-                    view: new Views.MenuView(),
+                    view: new Views.MenuView({user: user}),
                     events: {
                         'navigate': 'navigate'
                     }
                 });
                 App.headerRegion.show(this.views.get('menu'));
+                if (user) this.updateGreeting(user);
             }, this));
         },
 

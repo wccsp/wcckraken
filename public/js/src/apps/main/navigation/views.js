@@ -5,12 +5,16 @@
  */
 define([
     'jquery',
+    'underscore',
     'marionette',
     'hbs!./templates/menu.hbs'
-], function ($, Marionette, MenuTpl) {
+], function ($, _, Marionette, MenuTpl) {
     var Views = {};
 
     Views.MenuView = Marionette.LayoutView.extend({
+        //  Configuration
+        //  -----------------
+
         template: MenuTpl,
         className: 'col-sm-12',
         attributes: {
@@ -20,6 +24,18 @@ define([
         regions: {
             subMenuRegion: '#sub-menu'
         },
+
+        templateHelpers: {
+            isAdmin: function() {
+                if (!this.user) return false;
+                return !!(_.indexOf(this.user.get('roles'), 'admin'));
+            }
+        },
+
+
+
+        //  UI & Events
+        //  --------------------
 
         ui: {
             'greeting': '#greeting',
@@ -34,6 +50,11 @@ define([
             'click @ui.tab': 'select'
         },
 
+
+
+        //  Event Handlers
+        //  -------------------
+
         select: function(e) {
             e.preventDefault();
             this.trigger('navigate', $(e.target).attr('data-tab'));
@@ -41,6 +62,12 @@ define([
 
         onSetGreeting: function(greeting) {
             this.ui.greeting.text(greeting);
+        },
+
+        onFixed: function(bool) {
+            if (bool) {
+                this.$el.addClass('fixed')
+            }
         }
     });
 

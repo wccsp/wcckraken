@@ -24,5 +24,9 @@ var Group = function() {
         }
 
         return hasPermission;
-    }
+    };
+
+    return mongoose.model('Group', Schema);
 };
+
+module.exports = new Group();

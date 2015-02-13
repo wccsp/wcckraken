@@ -5,7 +5,7 @@ define ([
     './navigation/controller'
 ], function(require, M, Entities, Navigation) {
     var Main = {};
-    
+
     Main.Controller = M.Controller.extend({
         //  Channels
         channels: {
@@ -50,7 +50,7 @@ define ([
         home: function() {
             if (this.api.request('session:is:authorized')) {
                 var method = 'home';
-                require(['./home/controller'], _.bind(function(Home) {
+                require(['home'], _.bind(function(Home) {
                     this.startApp(Home.Controller);
                     this.triggerAppMethod(method);
                 }, this));
@@ -80,6 +80,6 @@ define ([
             this.controllers.get('app').triggerMethod(method);
         }
     });
-    
+
     return Main;
 });

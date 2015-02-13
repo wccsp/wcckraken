@@ -1,15 +1,17 @@
 /*
  *  name: controller,
  *  path: /controller
- *  desc: 
+ *  desc:
  */
 define([
+    'leaflet',
     'm'
-], function (M) {
+], function (L, M) {
     var Home = {};
 
     Home.Controller = M.Controller.extend({
         //  Configuration
+        //  ----------------------------
 
         channels: {
             api: {
@@ -22,8 +24,9 @@ define([
 
 
         //  Routes
+        //  ----------------------------
 
-        home: function() {
+        showMap: function() {
 
         }
     });
